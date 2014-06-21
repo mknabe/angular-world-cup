@@ -1,0 +1,11 @@
+{
+  "name": "world-cup",
+  "version": "0.0.0",
+  "description": "World Cup",
+  "devDependencies": {
+    "http-server": "^0.6.1"
+  },
+  "scripts": {
+  	"start" : "http-server -a localhost -p 9000"
+  }
+}

@@ -1,0 +1,50 @@
+body {
+	font-family: "Calibri";
+}
+h2, h3, h4 {
+	margin: 3px;
+}
+table td {
+	padding: 3px 7px;
+}
+
+.group {
+	width: 24%;
+	display: inline-block;
+	border: 1px solid #E0E0E0;
+	padding: 2px;
+	margin: 2px;
+}
+.table-group th {
+	font-size: 2em;
+}
+.table-match {
+	width: 100%;
+}
+
+.match-winner {
+	font-style: italic;
+}
+.match-completed td {
+	color: #C8C8C8;
+}
+.match-now td {
+	background-color: #CCFFCC;
+}
+.match-today td {
+	color: blue;
+}
+
+.team-win {
+	color: #00CC00;
+}
+.team-lose {
+	color: red;
+}
+
+.bracket td {
+	border: 1px solid black;
+}
+.bracket {
+	width: 100%;
+}
