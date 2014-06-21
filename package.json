@@ -2,10 +2,14 @@
   "name": "world-cup",
   "version": "0.0.0",
   "description": "World Cup",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mknabe/angular-world-cup.git"
+  }
   "devDependencies": {
     "http-server": "^0.6.1"
   },
   "scripts": {
-  	"start" : "http-server -a localhost -p 9000"
+  	"start" : "http-server -a angular-world-cup.herokuapp.com"
   }
 }
