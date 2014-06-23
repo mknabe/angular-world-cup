@@ -1,4 +1,4 @@
-angular.module('worldCup', ['ngRoute'])
+angular.module('worldCup', ['ngRoute', 'angular-loading-bar', 'ngAnimate'])
 .config(function($routeProvider) {
   $routeProvider
 

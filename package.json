@@ -10,6 +10,6 @@
     "http-server": "^0.6.1"
   },
   "scripts": {
-  	"start" : "http-server app"
+    "start": "http-server app"
   }
 }

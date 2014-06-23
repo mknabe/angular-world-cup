@@ -1,6 +1,7 @@
 <div>
   <div class="timestamp">Updated at {{timestamp | date: 'short'}}</div>
   <h1>Groups <a href="#/bracket">Bracket</a></h1>
+  <div ng-show="loading">Loading...</div>
   <div class="group" ng-repeat="group in results">
     <h2>Group {{group.group_name}}</h2>
     <table cellspacing="0" class="table-group">
@@ -53,7 +54,7 @@
       </tbody>
     </table>
   </div>
-  <div>
+  <div ng-hide="loading">
     <table>
       <tr><th>Key</th></tr>
       <tr class="match-completed"><td>Completed Match</td></tr>

@@ -1,11 +1,12 @@
-angular.module('worldCup')
+var GroupController = angular.module('worldCup')
 .controller('GroupController', ['$scope', 'ResultsService' , function($scope, ResultsService) {
 
+  $scope.loading = true;
   ResultsService.getAllResults().then(function() {
     $scope.results = ResultsService.results;
+    $scope.loading = false;
   });
   $scope.timestamp = new Date();
-
 
   $scope.getCountryStatus = function(wins, losses, draws)  {
     var classes = [];
