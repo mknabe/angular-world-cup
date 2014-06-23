@@ -1,0 +1,32 @@
+.group {
+  display: inline-block;
+  border: 1px solid #E0E0E0;
+  padding: 2px;
+  margin: 2px;
+}
+.table-group th {
+  font-size: 2em;
+}
+.table-match {
+  width: 100%;
+}
+
+/* country and match styling on Group page */
+.match-winner {
+  font-style: italic;
+}
+.match-completed td {
+  color: #C8C8C8;
+}
+.match-now td {
+  background-color: #CCFFCC;
+}
+.match-today td {
+  color: blue;
+}
+.team-win {
+  color: #00CC00;
+}
+.team-lose {
+  color: red;
+}

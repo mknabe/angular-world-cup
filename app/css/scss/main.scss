@@ -2,19 +2,19 @@
 @import "mobile";
 @import "tablet";
 
-@mixin bracket-border ($side) {
-  border-#{$side}: 1px solid black;
-}
+@import "bracket";
+@import "groups";
 
 @mixin headers ($size, $weight) {
   font-size: $size;
   font-weight: $weight;
-  margin: .3% 0 .3% .3%;
+  margin: 10px 0 10px 5px;
 }
 
 body {
-  font-family: "Calibri";
+  font-family: "Calibri" sans-serif;
 }
+
 h1, h2, h3, h4 {
   margin: 3px;
 }
@@ -32,6 +32,9 @@ h3 {
   @include headers(1.5em, bold);
 }
 
+table th {
+  font-weight: bold;
+}
 table td {
   padding: 3px 7px;
 }
@@ -39,55 +42,3 @@ table td {
   float: right;
   font-size: small;
 }
-
-.group {
-  display: inline-block;
-  border: 1px solid #E0E0E0;
-  padding: 2px;
-  margin: 2px;
-}
-.table-group th {
-  font-size: 2em;
-}
-.table-match {
-  width: 100%;
-}
-
-/* country and match styling on Group page */
-.match-winner {
-  font-style: italic;
-}
-.match-completed td {
-  color: #C8C8C8;
-}
-.match-now td {
-  background-color: #CCFFCC;
-}
-.match-today td {
-  color: blue;
-}
-.team-win {
-  color: #00CC00;
-}
-.team-lose {
-  color: red;
-}
-
-/* bracket table borders */
-.bracket {
-  width: 100%;
-
-  .border-left {
-    @include bracket-border(left);
-  }
-  .border-right {
-    @include bracket-border(right);
-  }
-  .border-top {
-    @include bracket-border(top);
-  }
-  .border-bottom {
-    @include bracket-border(bottom);
-  }
-}
-
