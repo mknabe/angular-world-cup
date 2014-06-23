@@ -4,6 +4,7 @@ angular.module('worldCup')
   ResultsService.getAllResults().then(function() {
     $scope.results = ResultsService.results;
   });
+  $scope.timestamp = new Date();
 
 
   $scope.getCountryStatus = function(wins, losses, draws)  {
@@ -39,6 +40,7 @@ angular.module('worldCup')
 
   setInterval(function() {
     ResultsService.updateTodaysResults();
+    $scope.timestamp = new Date();
   }, 5 * 60 * 1000);
 
 }]);

@@ -12,6 +12,10 @@ h1 a {
 table td {
 	padding: 3px 7px;
 }
+.timestamp {
+	float: right;
+	font-size: small;
+}
 
 .group {
 	width: 24%;
