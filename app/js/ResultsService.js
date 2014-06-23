@@ -49,18 +49,17 @@ angular.module('worldCup')
 
     for (var i=0; i<Service.results.length; i++) {
       var group = Service.results[i];
+      
       for (var j=0; j<group.matches.length; j++) {
-
         var match = group.matches[j];
 
         for (var k=0; k<todays_matches.length; k++) {
-          if (match.match_number === todays_matches[k]) {
-            match = todays_matches[k];
+          if (match.match_number === todays_matches[k].match_number) {
+            Service.results[i].matches[j] = todays_matches[k];
           }
         }
       }
     }
-
   }
 
   var Service = {
@@ -74,7 +73,6 @@ angular.module('worldCup')
     },
     updateTodaysResults: function() {
       return ApiService.getTodaysMatches().then(transformTodaysMatchData);
-      console.log('refresh');
     }
   }
 
