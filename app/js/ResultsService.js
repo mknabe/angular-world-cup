@@ -74,6 +74,7 @@ angular.module('worldCup')
     },
     updateTodaysResults: function() {
       return ApiService.getTodaysMatches().then(transformTodaysMatchData);
+      console.log('refresh');
     }
   }
 

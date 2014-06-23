@@ -3,7 +3,6 @@ angular.module('worldCup')
 
   ResultsService.getAllResults().then(function() {
     $scope.results = ResultsService.results;
-    $scope.bracket_results = ResultsService.bracket_matches;
   });
 
 
