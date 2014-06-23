@@ -6,17 +6,32 @@
   border-#{$side}: 1px solid black;
 }
 
+@mixin headers ($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+  margin: .3% 0 .3% .3%;
+}
+
 body {
   font-family: "Calibri";
 }
 h1, h2, h3, h4 {
   margin: 3px;
 }
-h1 a {
-  font-weight: normal;
-  font-size: .5em;
+h1 {
+  @include headers(2em, bold);
 
+  a {
+    @include headers(.5em, normal);
+  }
 }
+h2 {
+  @include headers(1.75em, bold);
+}
+h3 {
+  @include headers(1.5em, bold);
+}
+
 table td {
   padding: 3px 7px;
 }
@@ -26,7 +41,6 @@ table td {
 }
 
 .group {
-  /*width: 24%;*/
   display: inline-block;
   border: 1px solid #E0E0E0;
   padding: 2px;
