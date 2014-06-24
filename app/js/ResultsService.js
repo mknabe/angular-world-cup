@@ -28,7 +28,7 @@ angular.module('worldCup')
       var group_id = Service.team_group_relation[match.home_team.code];
       var group = Service.results[group_id-1];
 
-      if (group_id) {
+      if (match.match_number < 49) {
         group.matches.push(match);
       } else {
         // to fix a bug in the api
