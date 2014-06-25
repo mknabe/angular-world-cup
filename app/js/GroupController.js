@@ -8,13 +8,35 @@ var GroupController = angular.module('worldCup')
   });
   $scope.timestamp = new Date();
 
-  $scope.getCountryStatus = function(wins, losses, draws)  {
-    var classes = [];
-    
-    if (wins >= 2) {
+  $scope.getCountryStatus = function(group, team)  {
+    var classes = [], i;
+
+    if (team.wins >= 2) {
       classes.push('team-win');
-    } else if (losses >= 2) {
+    } else if (team.losses >= 2) {
       classes.push('team-lose');
+    } else if(team.wins + team.losses + team.draws === 3) {
+      var worse = 0, better = 0;
+
+      for(i = 0; i < group.teams.length; i++) {
+        if ( team != group.teams[i] ) {
+          if ( team.points > group.teams[i].points ){
+            better += 1;
+          } else if (team.points < group.teams[i].points) {
+            worse += 1;
+          } else if (team.goal_diff > group.teams[i].goal_diff) {
+            better += 1;
+          } else {
+            worse += 1;
+          }
+        }
+      }
+
+      if(better > worse) {
+        classes.push('team-win');
+      } else {
+        classes.push('team-lose');
+      }
     }
 
     return classes;
