@@ -64,9 +64,9 @@ angular.module('worldCup')
 
   var Service = {
     groups: [{ group_id: 1, name: 'A'},{ group_id: 2, name: 'B'},{ group_id: 3, name: 'C'},{ group_id: 4, name: 'D'},{ group_id: 5, name: 'E'},{ group_id: 6, name: 'F'},{ group_id: 7, name: 'G'},{ group_id: 8, name: 'H'}],
-    results: [],
+    results: [], // used on groups page
     team_group_relation: {},
-    bracket_matches: [],
+    bracket_matches: [], // used on bracket page
     
     getAllResults: function() {
       return ApiService.getGroupResults().then(transformGroupData).then(ApiService.getMatches).then(transformMatchData);
