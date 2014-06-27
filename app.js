@@ -6,7 +6,8 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , mongo = require('./utils/mongoWrapper');
 
 var app = express();
 
@@ -30,6 +31,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+mongo.initialize(function() {
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
 });

@@ -3,21 +3,22 @@
  * GET home page.
  */
 
+var db = require('../utils/mongoWrapper');
+
 exports.index = function(req, res){
     var request = require('request');
-    request('http://worldcup.sfg.io/group_results', function (error, response, group_results) {
-        if (!error && response.statusCode == 200) {
-            request('http://worldcup.sfg.io/matches', function (error, response, matches) {
-                if (!error && response.statusCode == 200) {
-                    request('http://worldcup.sfg.io/matches/today', function (error, response, today) {
-                        if (!error && response.statusCode == 200) {
-                            res.render('index', { group_results: group_results,
-                                matches: matches,
-                                today: today });
-                        }
-                    })
-                }
-            })
-        }
+    var mongoDb = db.getDbInstance();
+    mongoDb.world_cup_data.find({key: 'group_results'}, function(err, group_results){
+      if ( err || !group_results) console.log('Likely no connection');
+      else mongoDb.world_cup_data.find({key: 'matches'}, function(err, matches) {
+        if ( err || !group_results) console.log('Likely no connection');
+        else mongoDb.world_cup_data.find({key: 'today'}, function(err, today) {
+          if ( err || !group_results) console.log('Likely no connection');
+          else res.render('index', {
+            group_results: group_results[0].data,
+            matches: matches[0].data,
+            today: today[0].data});
+        })
+      })
     })
 };
