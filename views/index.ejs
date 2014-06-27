@@ -1,0 +1,102 @@
+<!doctype html>
+<html ng-app="worldCup">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>World Cup 2014</title>
+
+    <link rel="stylesheet" type="text/css" href="lib/reset.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/angular-loading-bar/loading-bar.css">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" href="css/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="css/img/favicon.ico" type="image/x-icon">
+
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-route.min.js"></script>
+    <script src="lib/angular/angular-animate.min.js"></script>
+
+    <script src="lib/angular-loading-bar/loading-bar.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/ApiService.js"></script>
+    <script src="js/ResultsService.js"></script>
+    <script src="js/GroupController.js"></script>
+    <script src="js/BracketController.js"> </script>
+    <script type="text/javascript">
+        var group_results = <%- group_results %>;
+        var matches = <%- matches %>;
+    </script>
+</head>
+<body>
+<div ng-view></div>
+    <script type="text/ng-template" id="partials/groups.html"><div>
+        <div class="timestamp">Updated at {{timestamp | date: 'short'}}</div>
+        <h1>Groups <a href="#/bracket">Bracket</a></h1>
+        <div ng-show="loading">Loading...</div>
+        <div class="group" ng-repeat="group in results">
+            <h2>Group {{group.group_name}}</h2>
+            <table cellspacing="0" class="table-group">
+                <colgroup>
+                    <col width="50%">
+                    <col width="10%">
+                    <col width="10%">
+                </colgroup>
+                <tbody>
+                <tr ng-repeat="team in group.teams | orderBy: ['-points', '-goal_diff']" ng-class="getCountryStatus(group, team)">
+                    <td>
+                        {{team.country}}
+                    </td>
+                    <td>
+                        {{team.points}}
+                    </td>
+                    <td>
+                        {{team.goal_diff}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <h3>Matches</h3>
+            <table cellspacing="0" class="table-match">
+                <colgroup>
+                    <col width="30%">
+                    <col width="5%">
+                    <col width="5%">
+                    <col width="30%">
+                    <col width="30%">
+                </colgroup>
+                <tbody>
+                <tr ng-repeat="match in group.matches | orderBy: ['-status', 'datetime']" ng-class="getMatchStatus(match.datetime, match.status)">
+                    <td ng-class="{'match-winner' : match.winner == match.home_team.country}">
+                        {{match.home_team.country}}
+                    </td>
+                    <td>
+                        {{match.home_team.goals}}
+                    </td>
+                    <td>
+                        {{match.away_team.goals}}
+                    </td>
+                    <td ng-class="{'match-winner' : match.winner == match.away_team.country}">
+                        {{match.away_team.country}}
+                    </td>
+                    <td>
+                        {{match.datetime | date: 'short'}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-hide="loading">
+            <table>
+                <tr><th>Key</th></tr>
+                <tr class="match-completed"><td>Completed Match</td></tr>
+                <tr class="match-now"><td>Match in Progress</td></tr>
+                <tr class="match-today"><td>Today's Matches</td></tr>
+                <tr class="team-win"><td>Country Advancing</td></tr>
+                <tr class="team-lose"><td>Country Knocked Out</td></tr>
+            </table>
+        </div>
+        </div>
+    </script>
+</body>
+</html>
