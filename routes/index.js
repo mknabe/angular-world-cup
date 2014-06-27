@@ -6,7 +6,6 @@
 var db = require('../utils/mongoWrapper');
 
 exports.index = function(req, res){
-  var request = require('request');
   var mongoDb = db.getDbInstance();
   mongoDb.world_cup_data.find({key: 'group_results'}, function(err, group_results){
     if ( err || !group_results) console.log('Likely no connection');
@@ -18,4 +17,43 @@ exports.index = function(req, res){
       );
     });
   });
+};
+
+exports.group_results = function(req, res){
+  var mongoDb = db.getDbInstance();
+  mongoDb.world_cup_data.find({key: 'group_results'}, function(err, group_results){
+    if ( err || !group_results) {
+      console.log('Likely no connection');
+    }
+    else {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(group_results[0].data);
+    }
+  })
+};
+
+exports.matches = function(req, res){
+  var mongoDb = db.getDbInstance();
+  mongoDb.world_cup_data.find({key: 'matches'}, function(err, matches){
+    if ( err || !matches) {
+      console.log('Likely no connection');
+    }
+    else {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(matches[0].data);
+    }
+  })
+};
+
+exports.today = function(req, res){
+  var mongoDb = db.getDbInstance();
+  mongoDb.world_cup_data.find({key: 'today'}, function(err, today){
+    if ( err || !today) {
+      console.log('Likely no connection');
+    }
+    else {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(today[0].data);
+    }
+  })
 };

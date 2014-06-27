@@ -28,7 +28,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+// Routes
 app.get('/', routes.index);
+app.get('/group_results', routes.group_results);
+app.get('/matches', routes.matches);
+app.get('/today', routes.today);
 
 
 mongo.initialize(function() {
