@@ -7,13 +7,13 @@ angular.module('worldCup')
 
   var Service = {
     getGroupResults: function() {
-      return get('http://worldcup.sfg.io/group_results');
+      return get(document.location.origin + '/group_results');
     },
     getMatches: function() {
-      return get('http://worldcup.sfg.io/matches');
+      return get(document.location.origin + '/matches');
     },
     getTodaysMatches: function() {
-      return get('http://worldcup.sfg.io/matches/today');
+      return get(document.location.origin + '/today');
     }
   };
 
