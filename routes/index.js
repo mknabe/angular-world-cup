@@ -6,7 +6,7 @@
 var db = require('../utils/mongoWrapper');
 
 // Cleaning -  key = key string in mdb, cb = callback when finished
-var getSomething = function(key, cb){
+var getSomething = function (key, cb){
   var mongoDb = db.getDbInstance();
   mongoDb.world_cup_data.find({key: key}, function(err, data){
     if ( err || !data) {
@@ -16,6 +16,13 @@ var getSomething = function(key, cb){
       cb(data);
     }
   })
+};
+
+var spitJSONforKey = function (key, res) {
+  getSomething(key, function (data) {
+    res.setHeader('Content-Type', 'application/json');
+    res.end(data[0].data);
+  });
 };
 
 exports.index = function(req, res){
@@ -30,22 +37,13 @@ exports.index = function(req, res){
 };
 
 exports.group_results = function(req, res){
-  getSomething('group_results', function (data) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(data[0].data);
-  });
+  spitJSONforKey('group_results', res);
 };
 
 exports.matches = function(req, res){
-  getSomething('matches', function (data) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(data[0].data);
-  });
+  spitJSONforKey('matches', res);
 };
 
 exports.today = function(req, res){
-  getSomething('today', function (data) {
-    res.setHeader('Content-Type', 'application/json');
-    res.end(data[0].data);
-  });
+  spitJSONforKey('today', res);
 };
