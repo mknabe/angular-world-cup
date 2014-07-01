@@ -32,7 +32,8 @@ module.exports = {
       requestAndUpdate('http://worldcup.sfg.io/group_results', 'group_results');
       requestAndUpdate('http://worldcup.sfg.io/matches', 'matches');
       requestAndUpdate('http://worldcup.sfg.io/matches/today', 'today');
-    }();
+    };
+	getData();
     var setPoll = setInterval(getData, 200000);
   },
   getDbInstance: function() {
