@@ -28,11 +28,12 @@ module.exports = {
     next();
   },
   startPolling: function() {
-    var setPoll = setInterval(function() {
+    var getData = function() {
       requestAndUpdate('http://worldcup.sfg.io/group_results', 'group_results');
       requestAndUpdate('http://worldcup.sfg.io/matches', 'matches');
       requestAndUpdate('http://worldcup.sfg.io/matches/today', 'today');
-    }, 200000);
+    }();
+    var setPoll = setInterval(getData, 200000);
   },
   getDbInstance: function() {
     return db;
