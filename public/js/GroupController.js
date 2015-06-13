@@ -2,14 +2,20 @@ var GroupController = angular.module('worldCup')
 .controller('GroupController', ['$scope', 'ResultsService' , function($scope, ResultsService) {
 
   $scope.loading = true;
-  ResultsService.getAllResults().then(function() {
+  if (group_results) {
+    ResultsService.getResultsFromPage();
     $scope.results = ResultsService.results;
     $scope.loading = false;
-  });
+  } else {
+    ResultsService.getAllResults().then(function () {
+      $scope.results = ResultsService.results;
+      $scope.loading = false;
+    });
+  }
   $scope.timestamp = new Date();
 
   $scope.getCountryStatus = function(group, team)  {
-    var classes = [], i;
+    var classes = [];
 
     if (team.wins >= 2) {
       classes.push('team-win');

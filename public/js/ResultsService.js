@@ -92,6 +92,12 @@ angular.module('worldCup')
         .then(ApiService.getMatches)
         .then(transformMatchData);
     },
+    getResultsFromPage: function() {
+      transformGroupData({data: group_results});
+      transformMatchData({data: matches});
+      group_results = null;
+      matches = null;
+    },
     updateTodaysResults: function() {
       return ApiService.getTodaysMatches()
         .then(transformTodaysMatchData);

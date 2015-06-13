@@ -8,16 +8,16 @@ angular.module('worldCup')
 
   var Service = {
     getGroupResults: function() {
-      return get('http://worldcup.sfg.io/teams/group_results');
+      return get(document.location.origin + '/teams/group_results');
     },
     getMatches: function() {
-      return get('http://worldcup.sfg.io/matches');
+      return get(document.location.origin + '/matches');
     },
     getResultsForTeams: function() {
-      return get('http://worldcup.sfg.io/teams/results');
+      return get(document.location.origin + '/teams/results');
     },
     getTodaysMatches: function() {
-      return get('http://worldcup.sfg.io/matches/today');
+      return get(document.location.origin + '/today');
     }
   };
 
