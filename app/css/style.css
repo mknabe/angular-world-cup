@@ -1,6 +1,6 @@
 @media only screen and (min-width: 1224px) {
   .group {
-    width: 24%; } }
+    width: 32%; } }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
   .group {
     width: 100%; } }
@@ -84,3 +84,5 @@ table td {
 .timestamp {
   float: right;
   font-size: small; }
+
+/*# sourceMappingURL=style.css.map */

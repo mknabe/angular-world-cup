@@ -1,34 +1,50 @@
 angular.module('worldCup')
-.factory('ResultsService', ['ApiService', function(ApiService) {
+.factory('ResultsService', ['$q', 'ApiService', function($q, ApiService) {
 
   function transformGroupData(data) {
     Service.results = [];
-    for (var i=0; i<Service.groups.length; i++) {
-      var group = {
-        group_name: Service.groups[i].name,
-        group_id: Service.groups[i].group_id,
-        teams: data.data.slice(i*4,(i+1)*4),
-        matches: []
-      }
+    
 
-      Service.results.push(group);
-      for (var j=0; j<group.teams.length; j++) {
-        var team = group.teams[j];
-        team.points = team.wins * 3 + team.draws;
-        team.goal_diff = team.goals_for - team.goals_against;
-        Service.team_group_relation[team.fifa_code] = group.group_id;
-      }
-    }
+    var groups = data[0].data;
+    var teamResults = data[1].data;
+    groups.forEach(function(group) {
+      var groupTransform = {
+        group_name: group.group.letter,
+        group_id: group.group.id,
+        teams: [],
+        matches: []
+      };
+
+      group.group.teams.forEach(function(team) {
+        var teamTransform = team.team;
+        Service.team_group_relation[teamTransform.fifa_code] = groupTransform.group_id;
+
+        teamResults.forEach(function(teamResult) {
+          if (teamResult.fifa_code === teamTransform.fifa_code) {
+            teamTransform.wins = teamResult.wins;
+            teamTransform.draws = teamResult.draws;
+            teamTransform.losses = teamResult.losses;
+          }
+        })
+        groupTransform.teams.push(teamTransform);
+      });
+
+      Service.results.push(groupTransform);
+    });
   }
 
   function transformMatchData(data) {
     var matches = data.data;
+
+    // calculate the number of group matches and subtract 1 for the index
+    var numGroupMatches = Service.results.length * 6 - 1;
+
     for (var i=0; i<matches.length; i++) {
       var match = matches[i];
       var group_id = Service.team_group_relation[match.home_team.code];
       var group = Service.results[group_id-1];
 
-      if (match.match_number < 49) {
+      if (match.match_number < numGroupMatches) {
         group.matches.push(match);
       } else {
         // to fix a bug in the api
@@ -63,16 +79,22 @@ angular.module('worldCup')
   }
 
   var Service = {
-    groups: [{ group_id: 1, name: 'A'},{ group_id: 2, name: 'B'},{ group_id: 3, name: 'C'},{ group_id: 4, name: 'D'},{ group_id: 5, name: 'E'},{ group_id: 6, name: 'F'},{ group_id: 7, name: 'G'},{ group_id: 8, name: 'H'}],
     results: [], // used on groups page
     team_group_relation: {},
     bracket_matches: [], // used on bracket page
     
     getAllResults: function() {
-      return ApiService.getGroupResults().then(transformGroupData).then(ApiService.getMatches).then(transformMatchData);
+      return $q.all([
+        ApiService.getGroupResults(),
+        ApiService.getResultsForTeams()
+      ])
+        .then(transformGroupData)
+        .then(ApiService.getMatches)
+        .then(transformMatchData);
     },
     updateTodaysResults: function() {
-      return ApiService.getTodaysMatches().then(transformTodaysMatchData);
+      return ApiService.getTodaysMatches()
+        .then(transformTodaysMatchData);
     }
   }
 

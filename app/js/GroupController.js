@@ -24,7 +24,7 @@ var GroupController = angular.module('worldCup')
             better += 1;
           } else if (team.points < group.teams[i].points) {
             worse += 1;
-          } else if (team.goal_diff > group.teams[i].goal_diff) {
+          } else if (team.goal_differential > group.teams[i].goal_differential) {
             better += 1;
           } else {
             worse += 1;

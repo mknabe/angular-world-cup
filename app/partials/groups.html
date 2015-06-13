@@ -11,7 +11,7 @@
         <col width="10%">
       </colgroup>
       <tbody>
-        <tr ng-repeat="team in group.teams | orderBy: ['-points', '-goal_diff']" ng-class="getCountryStatus(group, team)">
+        <tr ng-repeat="team in group.teams | orderBy: ['-points', '-goal_differential']" ng-class="getCountryStatus(group, team)">
           <td>
             {{team.country}}
           </td>
@@ -19,7 +19,7 @@
             {{team.points}}
           </td>
           <td>
-            {{team.goal_diff}}
+            {{team.goal_differential}}
           </td>
         </tr>
       </tbody>
