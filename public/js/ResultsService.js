@@ -93,9 +93,10 @@ angular.module('worldCup')
         .then(transformMatchData);
     },
     getResultsFromPage: function() {
-      transformGroupData({data: group_results});
+      transformGroupData([{data: group_results}, {data: results}]);
       transformMatchData({data: matches});
       group_results = null;
+      results = null;
       matches = null;
     },
     updateTodaysResults: function() {

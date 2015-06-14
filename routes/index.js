@@ -27,10 +27,13 @@ var spitJSONforKey = function (key, res) {
 
 exports.index = function(req, res){
   getSomething('group_results', function(group_results){
-    getSomething('matches', function(matches){
-      res.render('index', {
-        group_results: group_results[0].data,
-        matches: matches[0].data
+    getSomething('results', function(results) {
+      getSomething('matches', function(matches){
+        res.render('index', {
+          group_results: group_results[0].data,
+          results: results[0].data,
+          matches: matches[0].data
+        });
       });
     });
   });
@@ -38,6 +41,11 @@ exports.index = function(req, res){
 
 exports.group_results = function(req, res){
   spitJSONforKey('group_results', res);
+};
+
+exports.results = function(req, res) {
+  console.log('test');
+  spitJSONforKey('results', res);
 };
 
 exports.matches = function(req, res){

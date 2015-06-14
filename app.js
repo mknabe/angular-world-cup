@@ -31,6 +31,7 @@ if ('development' == app.get('env')) {
 // Routes
 app.get('/', routes.index);
 app.get('/group_results', routes.group_results);
+app.get('/results', routes.results);
 app.get('/matches', routes.matches);
 app.get('/today', routes.today);
 

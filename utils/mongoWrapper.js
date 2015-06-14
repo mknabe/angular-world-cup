@@ -29,7 +29,8 @@ module.exports = {
   },
   startPolling: function() {
     var getData = function() {
-      requestAndUpdate('http://worldcup.sfg.io/group_results', 'group_results');
+      requestAndUpdate('http://worldcup.sfg.io/teams/group_results', 'group_results');
+      requestAndUpdate('http://worldcup.sfg.io/teams/results', 'results');
       requestAndUpdate('http://worldcup.sfg.io/matches', 'matches');
       requestAndUpdate('http://worldcup.sfg.io/matches/today', 'today');
     };
