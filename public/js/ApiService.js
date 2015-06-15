@@ -14,9 +14,7 @@ angular.module('worldCup')
       return get(document.location.origin + '/matches');
     },
     getResultsForTeams: function() {
-      return get(document.location.origin + '/results').then(function(data){
-        debugger;
-      });
+      return get(document.location.origin + '/results');
     },
     getTodaysMatches: function() {
       return get(document.location.origin + '/today');

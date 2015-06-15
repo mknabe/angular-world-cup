@@ -37,23 +37,24 @@ angular.module('worldCup')
     var matches = data.data;
 
     // calculate the number of group matches and subtract 1 for the index
-    var numGroupMatches = Service.results.length * 6 - 1;
+    var numGroupMatches = Service.results.length * 6;
 
     for (var i=0; i<matches.length; i++) {
       var match = matches[i];
       var group_id = Service.team_group_relation[match.home_team.code];
       var group = Service.results[group_id-1];
 
-      if (match.match_number < numGroupMatches) {
+      // determine if match is in group stage or bracket
+      if (match.match_number <= numGroupMatches) {
         group.matches.push(match);
       } else {
-        // to fix a bug in the api
-        if (!match.away_team_tbd) {
-          match.away_team_tbd = '[2B]';
-        }
-        if (!match.home_team_tbd) {
-          match.home_team_tbd = '[1A]';
-        }
+      //   // to fix a bug in the api
+      //   if (!match.away_team_tbd) {
+      //     match.away_team_tbd = '[2B]';
+      //   }
+      //   if (!match.home_team_tbd) {
+      //     match.home_team_tbd = '[1A]';
+      //   }
 
         Service.bracket_matches.push(match);
       }
