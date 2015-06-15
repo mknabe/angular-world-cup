@@ -10,6 +10,10 @@ angular.module('worldCup', ['ngRoute', 'angular-loading-bar', 'ngAnimate'])
       controller: 'GroupController',
       templateUrl: 'partials/groups.html'
     })
+    .when('/match/:id/group/:group', {
+      controller: 'MatchDetailController',
+      templateUrl: 'partials/matchdetails.html'
+    })
     .otherwise({
       redirectTo: '/groups'
     });

@@ -27,14 +27,16 @@
     <h3>Matches</h3>
     <table cellspacing="0" class="table-match">
       <colgroup>
+        <col width="5%">
         <col width="30%">
         <col width="5%">
         <col width="5%">
         <col width="30%">
-        <col width="30%">
+        <col width="25%">
       </colgroup>
       <tbody>
         <tr ng-repeat="match in group.matches | orderBy: ['-status', 'datetime']" ng-class="getMatchStatus(match.datetime, match.status)">
+          <td><a ng-show="match.status == 'completed'" ng-href="{{'#/match/' + match.match_number + '/group/' + group.group_name}}">Go</a></td>
           <td ng-class="{'match-winner' : match.winner == match.home_team.country}">
             {{match.home_team.country}}
           </td>

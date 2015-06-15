@@ -103,6 +103,20 @@ angular.module('worldCup')
     updateTodaysResults: function() {
       return ApiService.getTodaysMatches()
         .then(transformTodaysMatchData);
+    },
+    findGroupMatch: function(group_name, id) {
+      // return JSON.parse('{"match_number":1,"location":"Commonwealth Stadium","datetime":"2015-06-06T15:00:00.000-05:00","status":"completed","home_team":{"country":"Canada","code":"CAN","goals":1},"away_team":{"country":"China","code":"CHN","goals":0},"winner":"Canada","winner_code":"CAN","home_team_events":[{"id":1,"type_of_event":"yellow-card","player":"Scott","time":"22"},{"id":6,"type_of_event":"substitution-in","player":"Kyle","time":"61"},{"id":5,"type_of_event":"substitution-out","player":"Filigno","time":"61"},{"id":2,"type_of_event":"substitution-out","player":"Scott","time":"71"},{"id":7,"type_of_event":"substitution-in","player":"Fleming","time":"71"},{"id":4,"type_of_event":"substitution-out","player":"Tancredi","time":"77"},{"id":8,"type_of_event":"substitution-in","player":"Leon","time":"77"},{"id":3,"type_of_event":"goal-penalty","player":"Sinclair","time":"902"}],"away_team_events":[{"id":11,"type_of_event":"substitution-out","player":"Wang L S","time":"42"},{"id":13,"type_of_event":"substitution-in","player":"Han P","time":"42"},{"id":9,"type_of_event":"substitution-out","player":"Li Y","time":"62"},{"id":14,"type_of_event":"substitution-in","player":"Zhang R","time":"62"},{"id":10,"type_of_event":"substitution-out","player":"Gu Ys","time":"87"},{"id":12,"type_of_event":"substitution-in","player":"Ma J","time":"87"}]}');
+      var found;
+      Service.results.forEach(function(group) {
+        if (group.group_name === group_name) {
+          group.matches.forEach(function(match) {
+            if (match.match_number.toString() === id) {
+              found = match;
+            }
+          });
+        }
+      });
+      return found;
     }
   }
 
