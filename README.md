@@ -11,9 +11,16 @@ View live demo on [Heroku](http://angular-world-cup.herokuapp.com/)
 2. `npm install`
 3. Install MongoDB and have it running
 4. `npm start`
-5. Go to [http://localhost:8080](http://localhost:3000)
+5. Go to [http://localhost:3000](http://localhost:3000)
+
+# Recompile Sass
+
+```
+$ sass public/css/scss/main.scss public/css/style.css
+```
 
 # TODO
+
 - [ ] Responsive design, also design that responds to how many groups there are without hardcoding
 - [ ] Load bracket dynamically
 - [ ] Click on a match to see event details
