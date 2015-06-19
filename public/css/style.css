@@ -50,6 +50,9 @@
 .team-lose {
   color: red; }
 
+.team-tie {
+  color: orange; }
+
 body {
   font-family: "Calibri" sans-serif; }
 
@@ -84,5 +87,9 @@ table td {
 .timestamp {
   float: right;
   font-size: small; }
+
+a {
+  text-decoration: none;
+  color: cornflowerblue; }
 
 /*# sourceMappingURL=style.css.map */

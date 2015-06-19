@@ -32,16 +32,20 @@ var GroupController = angular.module('worldCup')
             worse += 1;
           } else if (team.goal_differential > group.teams[i].goal_differential) {
             better += 1;
-          } else {
+          } else if (team.goal_differential < group.teams[i].goal_differential) {
             worse += 1;
+          } else {
+            // TODO: teams have the same points and goal differential, look at who won a head-to-head match
           }
         }
       }
 
-      if(better > worse) {
+      if (better > worse) {
         classes.push('team-win');
-      } else {
+      } else if (better < worse) {
         classes.push('team-lose');
+      } else {
+        classes.push('team-tie');
       }
     }
 

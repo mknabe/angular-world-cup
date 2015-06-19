@@ -11,10 +11,14 @@ View live demo on [Heroku](http://angular-world-cup.herokuapp.com/)
 2. `npm install`
 3. Install MongoDB and have it running
 4. `npm start`
-5. Go to [http://localhost:8080](http://localhost:8080)
+5. Go to [http://localhost:8080](http://localhost:3000)
 
 # TODO
-[ ] Responsive design, also design that responds to how many groups there are without hardcoding
-[ ] Load bracket dynamically
-[ ] Click on a match to see event details
-[ ] Move date format to filter
+- [ ] Responsive design, also design that responds to how many groups there are without hardcoding
+- [ ] Load bracket dynamically
+- [ ] Click on a match to see event details
+    - [ ] Combine home and away team events and order them by time
+    - [ ] Clean up data and add icons for different event types
+- [ ] Add country flags
+- [ ] Move date format to filter
+- [x] Bug with teams that have the same points and goal differential

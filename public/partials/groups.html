@@ -27,16 +27,15 @@
     <h3>Matches</h3>
     <table cellspacing="0" class="table-match">
       <colgroup>
-        <col width="5%">
         <col width="30%">
         <col width="5%">
         <col width="5%">
         <col width="30%">
         <col width="25%">
+        <col width="5%">
       </colgroup>
       <tbody>
         <tr ng-repeat="match in group.matches | orderBy: ['-status', 'datetime']" ng-class="getMatchStatus(match.datetime, match.status)">
-          <td><a ng-show="match.status == 'completed'" ng-href="{{'#/match/' + match.match_number + '/group/' + group.group_name}}">Go</a></td>
           <td ng-class="{'match-winner' : match.winner == match.home_team.country}">
             {{match.home_team.country}}
           </td>
@@ -52,6 +51,10 @@
           <td>
             {{match.datetime | date: 'M/d h:mma'}}
           </td>
+          <td>
+            <a ng-show="match.status == 'completed'" ng-href="{{'#/match/' + match.match_number + '/group/' + group.group_name}}">
+            Go</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -64,6 +67,7 @@
       <tr class="match-today"><td>Today's Matches</td></tr>
       <tr class="team-win"><td>Country Advancing</td></tr>
       <tr class="team-lose"><td>Country Knocked Out</td></tr>
+      <tr class="team-tie"><td>Tied Countries</td></tr>
     </table>
   </div>
 </div>
