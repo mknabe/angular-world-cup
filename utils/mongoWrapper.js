@@ -1,5 +1,6 @@
 var db = null
-  , request = require('request');
+  , request = require('request')
+  , mongojs = require('mongojs');
 
 //brew install mongodb
 //Start the db with mongod --dbpath "make a folder somewhere and put the path here"
@@ -21,9 +22,9 @@ module.exports = {
     this.initializeDB(next);
   },
   initializeDB: function(next){
-    var databaseUrl = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'localhost:27017'
+    var databaseUrl = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'local'
     var collections = ["world_cup_data"];
-    db = require("mongojs").connect(databaseUrl, collections);
+    db = mongojs(databaseUrl, collections);
     this.startPolling();
     next();
   },

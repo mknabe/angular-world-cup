@@ -7,13 +7,13 @@
     "url": "git://github.com/mknabe/angular-world-cup.git"
   },
   "scripts": {
-      "start": "node app.js"
+    "start": "node app.js"
   },
   "dependencies": {
-      "express": "3.3.4",
-      "request": "*",
-      "ejs": "*",
-      "less-middleware": "*",
-      "mongojs": "0.18.1"
+    "express": "3.3.4",
+    "request": "*",
+    "ejs": "*",
+    "less-middleware": "*",
+    "mongojs": "2.6.0"
   }
 }

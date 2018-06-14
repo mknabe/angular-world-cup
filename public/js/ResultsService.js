@@ -45,7 +45,7 @@ angular.module('worldCup')
       var group = Service.results[group_id-1];
 
       // determine if match is in group stage or bracket
-      if (match.match_number <= numGroupMatches) {
+      if (group) {
         group.matches.push(match);
       } else {
       //   // to fix a bug in the api
