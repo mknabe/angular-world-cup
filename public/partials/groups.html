@@ -54,6 +54,7 @@
           <td>
             <a ng-show="match.status == 'completed'" ng-href="{{'#/match/' + match.match_number + '/group/' + group.group_name}}">
             Go</a>
+            <span ng-show="match.status == 'in progress'">{{match.time}}</span>
           </td>
         </tr>
       </tbody>
