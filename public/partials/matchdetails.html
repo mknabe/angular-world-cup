@@ -3,7 +3,7 @@
 <div style="float:left">
   <table>
     <tr ng-repeat="event in match.home_team_events">
-      <td>{{event.type_of_event}}</td>
+      <td>{{getEmoji(event.type_of_event)}}</td>
       <td>{{event.player}}</td>
       <td>{{event.time}}</td>
     </tr>
@@ -13,7 +13,7 @@
 <div style="float:left">
   <table>
     <tr ng-repeat="event in match.away_team_events">
-      <td>{{event.type_of_event}}</td>
+      <td>{{getEmoji(event.type_of_event)}}</td>
       <td>{{event.player}}</td>
       <td>{{event.time}}</td>
     </tr>

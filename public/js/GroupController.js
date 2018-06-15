@@ -1,6 +1,12 @@
 var GroupController = angular.module('worldCup')
 .controller('GroupController', ['$scope', 'ResultsService' , function($scope, ResultsService) {
 
+  var flags = ResultsService.getFlags();
+
+  $scope.getFlag = function(code) {
+    return flags[code.toUpperCase()] || "😞";
+  }
+
   $scope.loading = true;
   if (group_results) {
     ResultsService.getResultsFromPage();
@@ -64,7 +70,14 @@ var GroupController = angular.module('worldCup')
     var today = new Date();
     var matchDate = new Date(date);
 
-    if ((today.getDate() === matchDate.getDate()) && (today.getMonth() === today.getMonth())) {
+    if (today.getDate() === matchDate.getDate() &&
+      today.getMonth() === matchDate.getMonth()) {
+      classes.push('match-today');
+    }
+
+    if (classes.length === 0 && 
+      today.getDate()+1 === matchDate.getDate() &&
+      today.getMonth() === matchDate.getMonth()) {
       classes.push('match-today');
     }
 

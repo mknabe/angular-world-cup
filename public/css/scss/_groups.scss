@@ -24,6 +24,9 @@
 .match-today td {
   color: blue;
 }
+.match-completed.match-today td {
+  //color: #676DA2 !important;
+}
 .team-win {
   color: #00CC00;
 }

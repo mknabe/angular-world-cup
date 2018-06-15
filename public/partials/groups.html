@@ -13,7 +13,7 @@
       <tbody>
         <tr ng-repeat="team in group.teams | orderBy: ['-points', '-goal_differential']" ng-class="getCountryStatus(group, team)">
           <td>
-            {{team.country}}
+            {{getFlag(team.fifa_code)}} {{team.country}}
           </td>
           <td>
             {{team.points}}
@@ -37,19 +37,19 @@
       <tbody>
         <tr ng-repeat="match in group.matches | orderBy: ['-status', 'datetime']" ng-class="getMatchStatus(match.datetime, match.status)">
           <td ng-class="{'match-winner' : match.winner == match.home_team.country}">
-            {{match.home_team.country}}
+            {{getFlag(match.home_team.code)}} {{match.home_team.country}}
           </td>
           <td>
             {{match.home_team.goals}}
           </td>
           <td>
             {{match.away_team.goals}}
-          </td>
+          </td> 
           <td ng-class="{'match-winner' : match.winner == match.away_team.country}">
-            {{match.away_team.country}}
+            {{getFlag(match.away_team.code)}} {{match.away_team.country}}
           </td>
           <td>
-            {{match.datetime | date: 'M/d h:mma'}}
+            {{match.datetime | date: 'M/d ha' | lowercase}}
           </td>
           <td>
             <a ng-show="match.status == 'completed'" ng-href="{{'#/match/' + match.match_number + '/group/' + group.group_name}}">

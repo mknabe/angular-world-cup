@@ -3,4 +3,13 @@ angular.module('worldCup')
 
   $scope.match = ResultsService.findGroupMatch($routeParams.group, $routeParams.id)
 
+  $scope.getEmoji = function (type) {
+    switch (type) {
+      case 'goal':
+        return "⚽️➡🥅";
+      default:
+        return type;
+    }
+  }
+
 }]);
