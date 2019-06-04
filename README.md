@@ -26,6 +26,7 @@ $ sass public/css/scss/main.scss public/css/style.css
 - [ ] Click on a match to see event details
     - [ ] Combine home and away team events and order them by time
     - [ ] Clean up data and add icons for different event types
-- [ ] Add country flags
+- [x] Add country flags
 - [ ] Move date format to filter
 - [x] Bug with teams that have the same points and goal differential
+- [ ] Improve group round prediction algorithm

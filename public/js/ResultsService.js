@@ -156,7 +156,7 @@ angular.module('worldCup')
         "JAM": "🇯🇲",
         "NOR": "🇳🇴",
         "RSA": "🇿🇦",
-        "SCO": "🇯🇲",
+        "SCO": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
         "CMR": "🇨🇲",
         "CAN": "🇨🇦",
         "USA": "🇺🇸",

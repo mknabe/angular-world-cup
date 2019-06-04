@@ -4,13 +4,7 @@ var GroupController = angular.module('worldCup')
   var flags = ResultsService.getFlags();
 
   $scope.getFlag = function(code) {
-    if (flags[code.toUpperCase()])
-      return flags[code.toUpperCase()];
-    else {
-      console.log(code);
-      return "😞";
-
-    }
+    return flags[code.toUpperCase()] || "😞";
   };
 
   $scope.loading = true;
@@ -88,7 +82,7 @@ var GroupController = angular.module('worldCup')
     }
 
     return classes;
-  }
+  };
 
   setInterval(function() {
     ResultsService.updateTodaysResults();
