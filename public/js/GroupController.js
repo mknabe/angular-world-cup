@@ -4,8 +4,14 @@ var GroupController = angular.module('worldCup')
   var flags = ResultsService.getFlags();
 
   $scope.getFlag = function(code) {
-    return flags[code.toUpperCase()] || "😞";
-  }
+    if (flags[code.toUpperCase()])
+      return flags[code.toUpperCase()];
+    else {
+      console.log(code);
+      return "😞";
+
+    }
+  };
 
   $scope.loading = true;
   if (group_results) {

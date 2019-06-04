@@ -3,20 +3,20 @@ angular.module('worldCup')
 
   function transformGroupData(data) {
     Service.results = [];
-    
+
     var groups = data[0].data;
     var teamResults = data[1].data;
     
     groups.forEach(function(group) {
       var groupTransform = {
-        group_name: group.group.letter,
-        group_id: group.group.id,
+        group_name: group.letter,
+        group_id: group.id,
         teams: [],
         matches: []
       };
 
-      group.group.teams.forEach(function(team) {
-        var teamTransform = team.team;
+      group.ordered_teams.forEach(function(team) {
+        var teamTransform = team;
         Service.team_group_relation[teamTransform.fifa_code.toUpperCase()] = groupTransform.group_id;
 
         teamResults.forEach(function(teamResult) {
@@ -25,7 +25,7 @@ angular.module('worldCup')
             teamTransform.draws = teamResult.draws;
             teamTransform.losses = teamResult.losses;
           }
-        })
+        });
         groupTransform.teams.push(teamTransform);
       });
 
@@ -141,17 +141,31 @@ angular.module('worldCup')
         "MEX": "🇲🇽",
         "SWE": "🇸🇪",
         "GER": "🇩🇪",
-        "ENG": "🏴󠁧󠁢󠁥󠁮󠁧󠁿󠁧󠁢󠁥󠁮󠁧󠁿",
+        "ENG": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
         "TUN": "🇹🇳",
         "PAN": "🇵🇦",
         "BEL": "🇧🇪",
         "JPN": "🇯🇵",
         "COL": "🇨🇴",
         "SEN": "🇸🇳",
-        "POL": "🇵🇱"
+        "POL": "🇵🇱",
+        "ITA": "🇮🇹",
+        "CHN": "🇨🇳",
+        "CHI": "🇨🇱",
+        "NED": "🇳🇱",
+        "NZL": "🇳🇿",
+        "JAM": "🇯🇲",
+        "NOR": "🇳🇴",
+        "RSA": "🇿🇦",
+        "SCO": "🇯🇲",
+        "CMR": "🇨🇲",
+        "CAN": "🇨🇦",
+        "USA": "🇺🇸",
+        "THA": "🇹🇭"
+
       };
     }
-  }
+  };
 
   return Service;
 }]);
