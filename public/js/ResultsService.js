@@ -1,5 +1,5 @@
 angular.module('worldCup')
-.factory('ResultsService', ['$q', 'ApiService', 'VenueService', function($q, ApiService, VenueService) {
+.factory('ResultsService', ['$q', 'ApiService', function($q, ApiService) {
 
   function transformGroupData(data) {
     Service.results = [];
@@ -46,7 +46,6 @@ angular.module('worldCup')
       var group_id = Service.team_group_relation[code];
       var group = Service.results[group_id-1];
 
-      match.datetime = VenueService.getClientLocalTime(match.datetime, match.venue);
       match.match_number = i;
 
       // determine if match is in group stage or bracket
