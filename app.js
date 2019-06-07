@@ -7,7 +7,12 @@ var express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , mongo = require('./utils/mongoWrapper');
+  , mongo = require('./utils/mongoWrapper')
+  , favicon = require('serve-favicon')
+  , logger = require('morgan')  
+  , bodyParser = require('body-parser')
+  , methodOverride = require('method-override')
+  , errorHandler = require('errorhandler');
 
 var app = express();
 
@@ -15,17 +20,16 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(express.favicon(__dirname + '/public/css/img/favicon.ico'));
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(favicon(__dirname + '/public/css/img/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser());
+app.use(methodOverride());
 app.use(require('less-middleware')(path.join(__dirname,'/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorHandler());
 }
 
 // Routes
