@@ -44,6 +44,9 @@
 .match-today td {
   color: blue; }
 
+.match-tomorrow td {
+  color: darkblue; }
+
 .team-win {
   color: #00CC00; }
 
@@ -91,5 +94,10 @@ table td {
 a {
   text-decoration: none;
   color: cornflowerblue; }
+
+.flag {
+  font-size: 20px;
+  line-height: 0;
+  margin-right: 3px; }
 
 /*# sourceMappingURL=style.css.map */

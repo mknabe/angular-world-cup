@@ -78,7 +78,7 @@ var GroupController = angular.module('worldCup')
     if (classes.length === 0 && 
       today.getDate()+1 === matchDate.getDate() &&
       today.getMonth() === matchDate.getMonth()) {
-      classes.push('match-today');
+      classes.push('match-tomorrow');
     }
 
     return classes;

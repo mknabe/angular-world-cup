@@ -13,7 +13,7 @@
       <tbody>
         <tr ng-repeat="team in group.teams | orderBy: ['-points', '-goal_differential']" ng-class="getCountryStatus(group, team)">
           <td>
-            {{getFlag(team.fifa_code)}} {{team.country}}
+            <i class="flag">{{getFlag(team.fifa_code)}}</i> {{team.country}}
           </td>
           <td>
             {{team.points}}
@@ -37,7 +37,7 @@
       <tbody>
         <tr ng-repeat="match in group.matches | orderBy: ['-status', 'datetime']" ng-class="getMatchStatus(match.datetime, match.status)">
           <td ng-class="{'match-winner' : match.winner == match.home_team.country}">
-            {{getFlag(match.home_team.code)}} {{match.home_team.country}}
+            <i class="flag">{{getFlag(match.home_team.code)}}</i> {{match.home_team.country}}
           </td>
           <td>
             {{match.home_team.goals}}
@@ -46,7 +46,7 @@
             {{match.away_team.goals}}
           </td> 
           <td ng-class="{'match-winner' : match.winner == match.away_team.country}">
-            {{getFlag(match.away_team.code)}} {{match.away_team.country}}
+            <i class="flag">{{getFlag(match.away_team.code)}}</i>{{match.away_team.country}}
           </td>
           <td>
             {{match.datetime | date: 'M/d ha' | lowercase}}
@@ -66,6 +66,7 @@
       <tr class="match-completed"><td>Completed Match</td></tr>
       <tr class="match-now"><td>Match in Progress</td></tr>
       <tr class="match-today"><td>Today's Matches</td></tr>
+      <tr class="match-tomorrow"><td>Tomorrow's Matches</td></tr>
       <tr class="team-win"><td>Country Advancing</td></tr>
       <tr class="team-lose"><td>Country Knocked Out</td></tr>
       <tr class="team-tie"><td>Tied Countries</td></tr>

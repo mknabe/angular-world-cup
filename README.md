@@ -21,7 +21,7 @@ $ sass public/css/scss/main.scss public/css/style.css
 
 # TODO
 
-- [ ] Responsive design, also design that responds to how many groups there are without hardcoding
+- [x] Responsive design for groups
 - [ ] Load bracket dynamically
 - [ ] Click on a match to see event details
     - [ ] Combine home and away team events and order them by time
@@ -30,3 +30,6 @@ $ sass public/css/scss/main.scss public/css/style.css
 - [ ] Move date format to filter
 - [x] Bug with teams that have the same points and goal differential
 - [ ] Improve group round prediction algorithm
+- [ ] Pull predictions from [Five Thirty Eight](https://projects.fivethirtyeight.com/2019-womens-world-cup-predictions/)
+- [ ] Add upcoming matches style
+- [ ] Replace Angular with React
