@@ -1,13 +1,8 @@
-
-/*
- * GET home page.
- */
-
-var db = require('../utils/mongoWrapper');
+const db = require('../utils/mongoWrapper');
 
 // Cleaning -  key = key string in mdb, cb = callback when finished
-var getSomething = function (key, cb){
-  var mongoDb = db.getDbInstance();
+const getSomething = function (key, cb){
+  const mongoDb = db.getDbInstance();
   mongoDb.world_cup_data.find({key: key}, function(err, data){
     if ( err || !data) {
       console.log('Likely no connection');
@@ -18,14 +13,14 @@ var getSomething = function (key, cb){
   })
 };
 
-var spitJSONforKey = function (key, res) {
+const spitJSONforKey = (key, res) => {
   getSomething(key, function (data) {
     res.setHeader('Content-Type', 'application/json');
     res.end(data[0].data);
   });
 };
 
-exports.index = function(req, res){
+exports.index = (req, res) => {
   getSomething('group_results', function(group_results){
     getSomething('results', function(results) {
       getSomething('matches', function(matches){
@@ -42,22 +37,22 @@ exports.index = function(req, res){
   });
 };
 
-exports.group_results = function(req, res){
+exports.group_results = (req, res) => {
   spitJSONforKey('group_results', res);
 };
 
-exports.results = function(req, res) {
+exports.results = (req, res) => {
   spitJSONforKey('results', res);
 };
 
-exports.matches = function(req, res){
+exports.matches = (req, res) => {
   spitJSONforKey('matches', res);
 };
 
-exports.today = function(req, res){
+exports.today = (req, res) => {
   spitJSONforKey('today', res);
 };
 
-exports.fivethirtyeight = function(req, res){
+exports.fivethirtyeight = (req, res) => {
   spitJSONforKey('fivethirtyeight', res);
 };

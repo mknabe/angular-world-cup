@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var express = require('express')
+const express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
@@ -14,7 +14,8 @@ var express = require('express')
   , methodOverride = require('method-override')
   , errorHandler = require('errorhandler');
 
-var app = express();
+const app = express();
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -28,7 +29,7 @@ app.use(require('less-middleware')(path.join(__dirname,'/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
   app.use(errorHandler());
 }
 
