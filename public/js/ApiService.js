@@ -18,6 +18,9 @@ angular.module('worldCup')
     },
     getTodaysMatches: function() {
       return get(document.location.origin + '/today');
+    },
+    getPredictions: function() {
+      return get(document.location.origin + '/fivethirtyeight');
     }
   };
 

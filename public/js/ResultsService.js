@@ -34,8 +34,9 @@ angular.module('worldCup')
   }
 
   function transformMatchData(data) {
-    var matches = data.data;
-
+    var matches = data[0].data;
+    var predictions = data[1].data.matches;
+    
     // calculate the number of group matches and subtract 1 for the index
     var numGroupMatches = Service.results.length * 6;
 
@@ -50,6 +51,13 @@ angular.module('worldCup')
 
       // determine if match is in group stage or bracket
       if (group) {
+        var p = predictions.filter(m => match.home_team.code == m.team1_code && match.away_team.code == m.team2_code);
+        if (p) {
+          p = p[0];
+          match.home_team.prob = p.prob1;
+          match.away_team.prob = p.prob2;
+          match.probtie = p.probtie;
+        }
         group.matches.push(match);
       } else {
         Service.bracket_matches.push(match);
@@ -87,15 +95,16 @@ angular.module('worldCup')
         ApiService.getResultsForTeams(),
       ])
         .then(transformGroupData)
-        .then(ApiService.getMatches)
+        .then(function() {return $q.all([ApiService.getMatches(), ApiService.getPredictions()])})
         .then(transformMatchData);
     },
     getResultsFromPage: function() {
       transformGroupData([{data: group_results}, {data: results}]);
-      transformMatchData({data: matches});
+      transformMatchData([{data: matches}, {data: fivethirtyeight}]);
       group_results = null;
       results = null;
       matches = null;
+      fivethirtyeight = null;
     },
     updateTodaysResults: function() {
       return ApiService.getTodaysMatches()

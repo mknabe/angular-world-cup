@@ -38,6 +38,7 @@ app.get('/group_results', routes.group_results);
 app.get('/results', routes.results);
 app.get('/matches', routes.matches);
 app.get('/today', routes.today);
+app.get('/fivethirtyeight', routes.fivethirtyeight);
 
 
 mongo.initialize(function() {

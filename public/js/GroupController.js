@@ -84,6 +84,13 @@ var GroupController = angular.module('worldCup')
     return classes;
   };
 
+  $scope.getScoreDisplay = function(status, team) {
+    if (status == "completed" || status == "in progress") {
+      return team.goals;
+    }
+    return team.prob;
+  }
+
   setInterval(function() {
     ResultsService.updateTodaysResults();
     $scope.timestamp = new Date();

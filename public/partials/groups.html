@@ -40,10 +40,10 @@
             <i class="flag">{{getFlag(match.home_team.code)}}</i> {{match.home_team.country}}
           </td>
           <td>
-            {{match.home_team.goals}}
+            {{getScoreDisplay(match.status, match.home_team)}}
           </td>
           <td>
-            {{match.away_team.goals}}
+            {{getScoreDisplay(match.status, match.away_team)}}
           </td> 
           <td ng-class="{'match-winner' : match.winner == match.away_team.country}">
             <i class="flag">{{getFlag(match.away_team.code)}}</i>{{match.away_team.country}}

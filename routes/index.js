@@ -29,10 +29,13 @@ exports.index = function(req, res){
   getSomething('group_results', function(group_results){
     getSomething('results', function(results) {
       getSomething('matches', function(matches){
-        res.render('index', {
-          group_results: group_results[0].data,
-          results: results[0].data,
-          matches: matches[0].data
+        getSomething('fivethirtyeight', function(fivethirtyeight){
+          res.render('index', {
+            group_results: group_results[0].data,
+            results: results[0].data,
+            matches: matches[0].data,
+            fivethirtyeight: fivethirtyeight[0].data,
+          });
         });
       });
     });
@@ -44,7 +47,6 @@ exports.group_results = function(req, res){
 };
 
 exports.results = function(req, res) {
-  console.log('test');
   spitJSONforKey('results', res);
 };
 
@@ -54,4 +56,8 @@ exports.matches = function(req, res){
 
 exports.today = function(req, res){
   spitJSONforKey('today', res);
+};
+
+exports.fivethirtyeight = function(req, res){
+  spitJSONforKey('fivethirtyeight', res);
 };

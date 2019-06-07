@@ -34,6 +34,7 @@ module.exports = {
       requestAndUpdate('http://worldcup.sfg.io/teams/results', 'results');
       requestAndUpdate('http://worldcup.sfg.io/matches', 'matches');
       requestAndUpdate('http://worldcup.sfg.io/matches/today', 'today');
+      requestAndUpdate('https://projects.fivethirtyeight.com/soccer-api/international/2019/womens-world-cup/summary.json', 'fivethirtyeight');
     };
 	getData();
     var setPoll = setInterval(getData, 200000);
