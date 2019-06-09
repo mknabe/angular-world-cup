@@ -8,7 +8,7 @@ var GroupController = angular.module('worldCup')
   };
 
   $scope.loading = true;
-  if (group_results) {
+  if (world_cup_data) {
     ResultsService.getResultsFromPage();
     $scope.results = ResultsService.results;
     $scope.loading = false;
@@ -86,13 +86,13 @@ var GroupController = angular.module('worldCup')
 
   $scope.getScoreDisplay = function(status, team) {
     if (status == "completed" || status == "in progress") {
-      return team.goals;
+      return team.score;
     }
-    return team.prob;
-  }
+    return Math.round(team.probability * 100) + '%';
+  };
 
   setInterval(function() {
-    ResultsService.updateTodaysResults();
+    ResultsService.getAllResults();
     $scope.timestamp = new Date();
   }, 5 * 60 * 1000);
 

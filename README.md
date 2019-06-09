@@ -16,7 +16,7 @@ View live demo on [Heroku](http://angular-world-cup.herokuapp.com/)
 # Recompile Sass
 
 ```
-$ sass public/css/scss/main.scss public/css/style.css
+$ sass src/public/css/scss/main.scss src/public/css/style.css
 ```
 
 # TODO

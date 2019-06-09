@@ -7,7 +7,7 @@ const express = require('express')
   , routes = require('./routes')
   , http = require('http')
   , path = require('path')
-  , mongo = require('./utils/mongoWrapper')
+  , mongo = require('./services')
   , favicon = require('serve-favicon')
   , logger = require('morgan')  
   , bodyParser = require('body-parser')
@@ -35,11 +35,7 @@ if ('development' === app.get('env')) {
 
 // Routes
 app.get('/', routes.index);
-app.get('/group_results', routes.group_results);
-app.get('/results', routes.results);
-app.get('/matches', routes.matches);
-app.get('/today', routes.today);
-app.get('/fivethirtyeight', routes.fivethirtyeight);
+app.get('/data', routes.data);
 
 
 mongo.initialize(function() {

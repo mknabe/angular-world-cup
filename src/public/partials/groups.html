@@ -3,7 +3,7 @@
   <h1>Groups <a href="#/bracket">Bracket</a></h1>
   <div ng-show="loading">Loading...</div>
   <div class="group" ng-repeat="group in results">
-    <h2>Group {{group.group_name}}</h2>
+    <h2>Group {{group.group_letter}}</h2>
     <table cellspacing="0" class="table-group">
       <colgroup>
         <col width="50%">
@@ -37,7 +37,7 @@
       <tbody>
         <tr ng-repeat="match in group.matches | orderBy: ['-status', 'datetime']" ng-class="getMatchStatus(match.datetime, match.status)">
           <td ng-class="{'match-winner' : match.winner == match.home_team.country}">
-            <i class="flag">{{getFlag(match.home_team.code)}}</i> {{match.home_team.country}}
+            <i class="flag">{{getFlag(match.home_team.fifa_code)}}</i> {{match.home_team.country}}
           </td>
           <td>
             {{getScoreDisplay(match.status, match.home_team)}}
@@ -46,14 +46,12 @@
             {{getScoreDisplay(match.status, match.away_team)}}
           </td> 
           <td ng-class="{'match-winner' : match.winner == match.away_team.country}">
-            <i class="flag">{{getFlag(match.away_team.code)}}</i>{{match.away_team.country}}
+            <i class="flag">{{getFlag(match.away_team.fifa_code)}}</i>{{match.away_team.country}}
           </td>
           <td>
-            {{match.datetime | date: 'M/d ha' | lowercase}}
+            {{match.datetime | date: 'MM/dd ha' | lowercase}}
           </td>
           <td>
-            <a ng-show="match.status == 'completed'" ng-href="{{'#/match/' + match.match_number + '/group/' + group.group_name}}">
-            Go</a>
             <span ng-show="match.status == 'in progress'">{{match.time}}</span>
           </td>
         </tr>
